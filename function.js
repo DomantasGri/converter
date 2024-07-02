@@ -1,0 +1,1 @@
+getDocumentById('skaiciai').innerHTML = '';
