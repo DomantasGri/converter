@@ -11,16 +11,18 @@
         <div class="virsutineDalis">
             <div class="pavadinimas"><h1>Konvertatorius</h1></div>
             <div class="pasirinkimai">
-                <button>Eur to $</button>
-                <button>Celsius to Ferenheit</button>
+                <button id="EuraiTo$">Eur to $</button>
+                <button id="CTF">Celsius to Fahrenheit</button>
             </div>
         </div>
+        <div class="kokskeitimas">
+            <p id="keitimas">Eur to $</p>
+        </div>
         <div class="forma">
-            <button>Convert</button>
             <input type="number" placeholder="ivedimas" id="skaiciai">
-            <input type="number" placeholder="Atsakymas" readonly>
+            <input type="number" placeholder="Atsakymas" id="atsakymas">
         </div>
     </div>
+    <script src="function.js"></script>
 </body>
-<script src="function.js"></script>
 </html>
