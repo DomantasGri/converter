@@ -1,37 +1,72 @@
-// Exchange rate from EUR to USD
-const EUR_TO_USD_RATE = 1.08; // Example rate, you can update this with a current rate
+let currentConversion = "EUR_TO_USD";
 
-// Function to update the conversion result from Euro to USD
-function updateConversionResultEURtoUSD() {
-    const euroAmount = document.getElementById("skaiciai").value;
-    const usdAmount = (euroAmount * EUR_TO_USD_RATE).toFixed(2); // Converting to USD and rounding to 2 decimal places
-    document.getElementById("atsakymas").value = usdAmount;
+const EUR_TO_USD_RATE = 1.08;
+
+function celsiusToFahrenheit(celsius) {
+    return (celsius * 9/5) + 32;
 }
 
-// Function to update the conversion result from USD to Euro
-function updateConversionResultUSDtoEUR() {
-    const usdAmount = document.getElementById("atsakymas").value;
-    const euroAmount = (usdAmount / EUR_TO_USD_RATE).toFixed(2); // Converting to Euro and rounding to 2 decimal places
-    document.getElementById("skaiciai").value = euroAmount;
+function fahrenheitToCelsius(fahrenheit) {
+    return (fahrenheit - 32) * 5/9;
 }
 
-// Add event listeners to the input fields
+function updateConversionResult() {
+    const inputAmount = document.getElementById("skaiciai").value;
+    let outputAmount;
+
+    if (currentConversion === "EUR_TO_USD") {
+        outputAmount = (inputAmount * EUR_TO_USD_RATE).toFixed(2);
+    } else if (currentConversion === "CELSIUS_TO_FAHRENHEIT") {
+        outputAmount = celsiusToFahrenheit(parseFloat(inputAmount)).toFixed(2);
+    }
+
+    document.getElementById("atsakymas").value = outputAmount;
+}
+
+function updateReverseConversionResult() {
+    const inputAmount = document.getElementById("atsakymas").value;
+    let outputAmount;
+
+    if (currentConversion === "EUR_TO_USD") {
+        outputAmount = (inputAmount / EUR_TO_USD_RATE).toFixed(2);
+    } else if (currentConversion === "CELSIUS_TO_FAHRENHEIT") {
+        outputAmount = fahrenheitToCelsius(parseFloat(inputAmount)).toFixed(2);
+    }
+
+    document.getElementById("skaiciai").value = outputAmount;
+}
+
+function changeConversionMode(mode) {
+    currentConversion = mode;
+    document.getElementById("skaiciai").value = "0.00";
+    document.getElementById("atsakymas").value = "0.00";
+
+    if (mode === "EUR_TO_USD") {
+        document.getElementById("keitimas").textContent = "Eur to $";
+        document.getElementById("KeitimasPirmas").textContent = "Eur";
+        document.getElementById("KeitimasAntras").textContent = "$";
+    } else if (mode === "CELSIUS_TO_FAHRENHEIT") {
+        document.getElementById("keitimas").textContent = "Celsius to Fahrenheit";
+        document.getElementById("KeitimasPirmas").textContent = "Celsius";
+        document.getElementById("KeitimasAntras").textContent = "Fahrenheit";
+    }
+}
+
+document.getElementById("EuraiTo$").addEventListener("click", function() {
+    changeConversionMode("EUR_TO_USD");
+});
+
+document.getElementById("CTF").addEventListener("click", function() {
+    changeConversionMode("CELSIUS_TO_FAHRENHEIT");
+});
+
 document.getElementById("skaiciai").addEventListener("input", function() {
-    updateConversionResultEURtoUSD();
+    updateConversionResult();
 });
 
 document.getElementById("atsakymas").addEventListener("input", function() {
-    updateConversionResultUSDtoEUR();
+    updateReverseConversionResult();
 });
 function updateConversionType(conversionType) {
     document.getElementById("keitimas").textContent = conversionType;
-}
-document.getElementById("EuraiTo$").addEventListener("click", function() {
-    updateConversionType("Eur to $");
-});
-document.getElementById("CTF").addEventListener("click", function() {
-    updateConversionType("Celsius to Fahrenheit");
-});
-if(document.getElementById("EuraiTo$") = true) {
-    updateConversionType("Eur to $");
 }
