@@ -10,6 +10,13 @@ function fahrenheitToCelsius(fahrenheit) {
     return (fahrenheit - 32) * 5/9;
 }
 
+function KGTOP(KG){
+    return (KG /  0.45359237);
+}
+function PTOKG(P){
+    return (P * 0.45359237);
+}
+
 function updateConversionResult() {
     const inputAmount = document.getElementById("skaiciai").value;
     let outputAmount;
@@ -18,6 +25,8 @@ function updateConversionResult() {
         outputAmount = (inputAmount * EUR_TO_USD_RATE).toFixed(2);
     } else if (currentConversion === "CELSIUS_TO_FAHRENHEIT") {
         outputAmount = celsiusToFahrenheit(parseFloat(inputAmount)).toFixed(2);
+    } else if (currentConversion === "KG_TO_POUND") {
+        outputAmount = KGTOP(parseFloat(inputAmount)).toFixed(2);
     }
 
     document.getElementById("atsakymas").value = outputAmount;
@@ -31,6 +40,8 @@ function updateReverseConversionResult() {
         outputAmount = (inputAmount / EUR_TO_USD_RATE).toFixed(2);
     } else if (currentConversion === "CELSIUS_TO_FAHRENHEIT") {
         outputAmount = fahrenheitToCelsius(parseFloat(inputAmount)).toFixed(2);
+    } else if (currentConversion === "KG_TO_POUND") {
+        outputAmount = PTOKG(parseFloat(inputAmount)).toFixed(2);
     }
 
     document.getElementById("skaiciai").value = outputAmount;
@@ -42,13 +53,14 @@ function changeConversionMode(mode) {
     document.getElementById("atsakymas").value = "0.00";
 
     if (mode === "EUR_TO_USD") {
-        document.getElementById("keitimas").textContent = "Eur to $";
         document.getElementById("KeitimasPirmas").textContent = "Eur";
         document.getElementById("KeitimasAntras").textContent = "$";
     } else if (mode === "CELSIUS_TO_FAHRENHEIT") {
-        document.getElementById("keitimas").textContent = "Celsius to Fahrenheit";
         document.getElementById("KeitimasPirmas").textContent = "Celsius";
         document.getElementById("KeitimasAntras").textContent = "Fahrenheit";
+    } else if (mode === "KG_TO_POUND") {
+        document.getElementById("KeitimasPirmas").textContent = "Kilogramas";
+        document.getElementById("KeitimasAntras").textContent = "Pounds";
     }
 }
 
@@ -59,7 +71,9 @@ document.getElementById("EuraiTo$").addEventListener("click", function() {
 document.getElementById("CTF").addEventListener("click", function() {
     changeConversionMode("CELSIUS_TO_FAHRENHEIT");
 });
-
+document.getElementById("KGTP").addEventListener("click", function() {
+    changeConversionMode("KG_TO_POUND");
+});
 document.getElementById("skaiciai").addEventListener("input", function() {
     updateConversionResult();
 });
@@ -67,6 +81,4 @@ document.getElementById("skaiciai").addEventListener("input", function() {
 document.getElementById("atsakymas").addEventListener("input", function() {
     updateReverseConversionResult();
 });
-function updateConversionType(conversionType) {
-    document.getElementById("keitimas").textContent = conversionType;
-}
+
