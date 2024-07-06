@@ -32,7 +32,11 @@ body{
 .row p{
     margin: 0 10px 0 0;
     width: 100px;
-    text-align: end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: rgb(251, 253, 255);
+    font-weight: bold;
 }
 
 .row input {
@@ -41,11 +45,12 @@ body{
 
 
 .toggle-button {
-    padding: 10px 20px;
+    padding: 5px 10px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 50px;
     background: linear-gradient(145deg, #5e61cc, #7f72f6);
+    color: rgb(255, 205, 205);
     border: none;
     transition: all 0.2s;
 }
@@ -53,5 +58,14 @@ body{
 .toggle-button.active, .toggle-button:active {
     border-radius: 50px;
     box-shadow: inset 20px 20px 60px #4e51a8, inset -20px -20px 60px #655bc3;
-    color: wheat;
+    color: rgb(255, 248, 236);
+}
+input{
+    padding: 10px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(145deg, #5e61cc, #7f72f6);
+    color: rgb(255, 240, 240);
+    transition: all 0.2s;
+    font-weight: bold;
 }
