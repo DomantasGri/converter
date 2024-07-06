@@ -44,14 +44,14 @@ body{
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #008CBA;
-    color: white;
+    border-radius: 50px;
+    background: linear-gradient(145deg, #5e61cc, #7f72f6);
     border: none;
-    border-radius: 5px;
     transition: all 0.2s;
 }
 
 .toggle-button.active, .toggle-button:active {
-    background-color: #005f6b;
-    color: white;
+    border-radius: 50px;
+    box-shadow: inset 20px 20px 60px #4e51a8, inset -20px -20px 60px #655bc3;
+    color: wheat;
 }
