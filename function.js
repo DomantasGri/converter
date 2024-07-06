@@ -64,7 +64,7 @@ function changeConversionMode(mode) {
     }
 }
 
-document.getElementById("EuraiTo$").addEventListener("click", function() {
+document.getElementById("EuraiToDol").addEventListener("click", function() {
     changeConversionMode("EUR_TO_USD");
 });
 
@@ -82,3 +82,14 @@ document.getElementById("atsakymas").addEventListener("input", function() {
     updateReverseConversionResult();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.toggle-button');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            this.classList.add('active');
+        });
+    });
+});
